@@ -1,0 +1,8 @@
+flask
+flask-cors
+werkzeug
+requests
+reportlab
+python-magic
+yara-python
+pefile

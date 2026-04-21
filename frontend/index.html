@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MalTrace Analyzer</title>
+    <!-- Google Fonts: Outfit (headings) & Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .border-red {
+            border: 2px solid #ef4444;
+        }
+
+        .border-yellow {
+            border: 2px solid #facc15;
+        }
+
+        .border-green {
+            border: 2px solid #22c55e;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Ambient animated background blobs -->
+    <div class="ambient-blob blob-1" aria-hidden="true"></div>
+    <div class="ambient-blob blob-2" aria-hidden="true"></div>
+
+    <div class="app-wrapper">
+        <header>
+            <div class="header-logo">
+                <img src="{{ url_for('static', filename='img/malware copy.png') }}" alt="Website Logo" style="height: 40px; width: 40px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(199,230,255,0.3));">
+                <div class="header-text">
+                    <h1>MalTrace Analyzer</h1>
+                    <p>Upload any file to check if it's safe or dangerous</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+            <!-- STEP 1: Landing / Upload Zone -->
+            <section class="upload-section">
+                <div class="upload-card" id="uploadCard">
+                    <i class="ph-duotone ph-folder-open upload-icon" style="font-size: 48px; margin-bottom: 16px; display: inline-block;"></i>
+                    <h2>Analyze a File</h2>
+                    <p class="subtitle">Drag & Drop or click to browse</p>
+
+                    <div class="file-input-wrapper">
+                        <label for="fileInput" class="custom-file-label" id="fileLabel">
+                            <span id="fileLabelText" style="font-family: inherit;">Choose a file...</span>
+                        </label>
+                        <input type="file" id="fileInput">
+                    </div>
+
+                    <button class="btn btn-primary" id="analyzeBtn" onclick="analyzeFile()">
+                        <i class="ph-bold ph-lightning btn-icon"></i> Analyze File
+                    </button>
+                </div>
+            </section>
+
+            <!-- STEP 2: Analysis Progress -->
+            <div class="loader-container" id="loader" style="display: none;">
+                <div class="spinner"></div>
+                <div class="progress-steps" id="progressSteps">
+                    <div class="step" id="step1">Reading file &amp; computing hashes...</div>
+                    <div class="step" id="step2">Checking VirusTotal database...</div>
+                    <div class="step" id="step3">Scanning with 70+ antivirus engines...</div>
+                    <div class="step" id="step4">Building your threat report...</div>
+                </div>
+            </div>
+
+            <!-- Dashboard / Results -->
+            <section class="results-dashboard" id="results" style="display: none;">
+                <!-- JS will inject results here -->
+            </section>
+        </main>
+
+        <!-- STEP 8: Footer -->
+        <footer class="site-footer">
+            <p>Major Project 2026</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+
+</html>
