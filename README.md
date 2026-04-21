@@ -149,6 +149,21 @@ http://localhost:5000
 
 Get your free API key → **[virustotal.com](https://www.virustotal.com)** › Sign up › Profile › API Key
 
+## How It Works
+
+```
+1. User uploads file via browser
+2. hash_checker.py computes MD5, SHA1, SHA256
+3. SHA256 hash checked in VirusTotal database (instant if known)
+4. If new file → uploaded to VirusTotal for fresh scan
+5. 43+ antivirus engines scan the file simultaneously
+6. Results returned: threat score, engine detections, file tags
+7. Static analysis runs locally: entropy, keywords, PE headers
+8. Final Score = (Static × 40%) + (VirusTotal × 60%)
+9. Results displayed in UI with full breakdown
+10. PDF report auto-generated and saved to /reports/
+```
+
 
 ## 🎯 Scoring System
 
